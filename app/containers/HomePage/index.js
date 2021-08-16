@@ -12,6 +12,9 @@ import messages from './messages';
 export default function HomePage() {
   return (
     <h1>
+      <div>
+        <p>This is a sample message</p>
+      </div>
       <FormattedMessage {...messages.header} />
     </h1>
   );
