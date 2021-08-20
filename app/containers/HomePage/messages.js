@@ -10,6 +10,6 @@ export const scope = 'app.containers.HomePage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Packet viewer',
+    defaultMessage: 'Packet viewer v1.0',
   },
 });
