@@ -45,7 +45,7 @@ function FrontPage() {
   return (
     <Container>
       <MessageCont>
-        <Paragraph>Select from existing gamexxx:</Paragraph>
+        <Paragraph>Select from existing game:</Paragraph>
 
         <Select
           labelId="demo-simple-select-helper-label"

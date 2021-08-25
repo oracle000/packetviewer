@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+// import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+
 import styled from 'styled-components';
 import Header from 'components/Header';
 import FrontPage from 'components/FrontPage';
+import { makeSelectUsername } from 'containers/App/selectors';
+import saga from './saga';
+// import reducer from './reducers';
 
-// const Main = styled.div`
-//   text-align: center;
-// `;
+import { loadGames } from '../App/actions';
 
 const Body = styled.div`
   position: absolute;
@@ -28,7 +36,15 @@ const PositionCont = styled.div`
   position: relative;
 `;
 
-export default function HomePage() {
+const key = 'home';
+
+export function HomePage() {
+  // useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+  useEffect(() => {
+    getListofGames();
+  }, []);
+
   return (
     <div>
       <PositionCont>
@@ -41,3 +57,22 @@ export default function HomePage() {
     </div>
   );
 }
+
+function getListofGames() {}
+
+const mapStateToProps = createStructuredSelector({
+  gamesList: makeSelectUsername(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    getListofGames: dispatch(loadGames()),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(HomePage);
